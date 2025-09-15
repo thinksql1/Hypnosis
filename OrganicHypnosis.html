@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Mind Map: Organic Hypnosis for Smoking Cessation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for mind map structure and connecting lines */
+        .mindmap {
+            list-style: none;
+            padding: 0;
+            position: relative;
+        }
+        .mindmap ul {
+            list-style: none;
+            padding-left: 2rem;
+            margin-top: 0.5rem;
+        }
+        .mindmap li {
+            position: relative;
+            margin-bottom: 0.5rem; /* Space between items */
+        }
+        /* Vertical line connecting children to the parent's horizontal line */
+        .mindmap li::before {
+            content: '';
+            position: absolute;
+            top: 1.25rem; /* Align with the center of the node box */
+            left: -1rem;
+            width: 1px;
+            height: calc(100% - 1.25rem);
+            background-color: #cbd5e1; /* gray-300 */
+        }
+        /* The last li element should not have the full vertical line */
+        .mindmap li:last-child::before {
+            height: 0;
+        }
+
+        /* Horizontal line connecting a node to the main vertical branch */
+        .mindmap li::after {
+            content: '';
+            position: absolute;
+            top: 1.25rem; /* Vertically center the line with the node */
+            left: -1rem;
+            width: 1rem;
+            height: 1px;
+            background-color: #cbd5e1; /* gray-300 */
+        }
+
+        /* Root node doesn't need connecting lines */
+        .mindmap > li::before, .mindmap > li::after {
+            display: none;
+        }
+        
+        .node-content {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease-in-out;
+            border-width: 1px;
+            border-color: #e2e8f0; /* gray-200 */
+        }
+        
+        .node-content.has-children {
+            cursor: pointer;
+        }
+
+        .node-content:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border-color: #3b82f6; /* blue-500 */
+        }
+        
+        .toggle-icon {
+            margin-right: 0.75rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f1f5f9; /* slate-100 */
+            color: #475569; /* slate-600 */
+            border-radius: 9999px;
+            font-weight: bold;
+            transition: transform 0.2s ease;
+        }
+        
+        .collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-5xl">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-slate-900">Organic Hypnosis for Smoking Cessation</h1>
+            <p class="mt-2 text-lg text-slate-600">An interactive exploration of the core concepts.</p>
+        </header>
+
+        <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg">
+            <ul class="mindmap">
+                <!-- Mind Map structure generated from the .mm file -->
+                <li>
+                    <div class="node-content has-children bg-blue-100 border-l-4 border-blue-500" data-level="1">
+                        <span class="toggle-icon">−</span>
+                        <span>Core Principles &amp; Approach</span>
+                    </div>
+                    <ul>
+                        <li>
+                            <div class="node-content bg-sky-50 border-l-4 border-sky-400" data-level="2">Client-Led &amp; Intuitive Sessions</div>
+                        </li>
+                        <li>
+                            <div class="node-content bg-sky-50 border-l-4 border-sky-400" data-level="2">Focus on Client Empowerment</div>
+                        </li>
+                        <li>
+                            <div class="node-content bg-sky-50 border-l-4 border-sky-400" data-level="2">Authenticity &amp; Flow-Based Practice</div>
+                        </li>
+                        <li>
+                            <div class="node-content bg-sky-50 border-l-4 border-sky-400" data-level="2">Experience as Gateway to Learning</div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="node-content has-children bg-green-100 border-l-4 border-green-500" data-level="1">
+                         <span class="toggle-icon">−</span>
+                        <span>Addressing Client Challenges</span>
+                    </div>
+                    <ul>
+                        <li>
+                            <div class="node-content has-children bg-emerald-50 border-l-4 border-emerald-400" data-level="2">
+                                 <span class="toggle-icon">−</span>
+                                <span>Commitment &amp; Motivation</span>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="node-content bg-teal-50 border-l-4 border-teal-300" data-level="3">Confronting Reality &amp; Seeking Truth</div>
+                                </li>
+                                <li>
+                                    <div class="node-content bg-teal-50 border-l-4 border-teal-300" data-level="3">Accountability &amp; Empowerment</div>
+                                </li>
+                                <li>
+                                    <div class="node-content bg-teal-50 border-l-4 border-teal-300" data-level="3">Smoking as a Symptom, Not the Root</div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="node-content has-children bg-emerald-50 border-l-4 border-emerald-400" data-level="2">
+                                <span class="toggle-icon">−</span>
+                                <span>Cravings &amp; Discomfort</span>
+                            </div>
+                             <ul>
+                                <li>
+                                    <div class="node-content bg-teal-50 border-l-4 border-teal-300" data-level="3">Creative Exploration &amp; Reframing</div>
+                                </li>
+                                <li>
+                                    <div class="node-content bg-teal-50 border-l-4 border-teal-300" data-level="3">Utilizing Client's Internal Resources</div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                 <li>
+                    <div class="node-content has-children bg-purple-100 border-l-4 border-purple-500" data-level="1">
+                        <span class="toggle-icon">−</span>
+                        <span>Session Logistics &amp; Integration</span>
+                    </div>
+                    <ul>
+                        <li>
+                            <div class="node-content bg-violet-50 border-l-4 border-violet-400" data-level="2">Flexible Session Structure</div>
+                        </li>
+                        <li>
+                            <div class="node-content has-children bg-violet-50 border-l-4 border-violet-400" data-level="2">
+                                <span class="toggle-icon">−</span>
+                                <span>Post-Session Integration (IP)</span>
+                            </div>
+                            <ul>
+                                <li><div class="node-content bg-fuchsia-50 border-l-4 border-fuchsia-300" data-level="3">Learning from Triggers & Lapses</div></li>
+                                <li><div class="node-content bg-fuchsia-50 border-l-4 border-fuchsia-300" data-level="3">Most Important Work Happens After Session</div></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="node-content has-children bg-violet-50 border-l-4 border-violet-400" data-level="2">
+                                <span class="toggle-icon">−</span>
+                                <span>Pricing &amp; Ongoing Support</span>
+                            </div>
+                             <ul>
+                                <li><div class="node-content bg-fuchsia-50 border-l-4 border-fuchsia-300" data-level="3">Result-Oriented Fee Structure</div></li>
+                                <li><div class="node-content bg-fuchsia-50 border-l-4 border-fuchsia-300" data-level="3">Building Client Loyalty &amp; Referrals</div></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="node-content has-children bg-yellow-100 border-l-4 border-yellow-500" data-level="1">
+                        <span class="toggle-icon">−</span>
+                        <span>CLEAR Framework for Self-Inquiry</span>
+                    </div>
+                    <ul>
+                        <li><div class="node-content bg-amber-50 border-l-4 border-amber-400" data-level="2">C: Compassionate Curiosity (Ask Hard Questions)</div></li>
+                        <li><div class="node-content bg-amber-50 border-l-4 border-amber-400" data-level="2">L: Layer Beneath (Identify Underlying Issues)</div></li>
+                        <li><div class="node-content bg-amber-50 border-l-4 border-amber-400" data-level="2">E: Empower &amp; Agency (Trust Unconscious Mind)</div></li>
+                        <li><div class="node-content bg-amber-50 border-l-4 border-amber-400" data-level="2">A: Allow Paradox (Embrace Discomfort/Instinct)</div></li>
+                        <li><div class="node-content bg-amber-50 border-l-4 border-amber-400" data-level="2">R: Reflect Resources (Draw on Inner Strength)</div></li>
+                    </ul>
+                </li>
+                 <li>
+                    <div class="node-content has-children bg-rose-100 border-l-4 border-rose-500" data-level="1">
+                        <span class="toggle-icon">−</span>
+                        <span>Key Techniques &amp; Tools</span>
+                    </div>
+                    <ul>
+                        <li><div class="node-content bg-pink-50 border-l-4 border-pink-400" data-level="2">Breathing &amp; Imagery for Discomfort</div></li>
+                        <li><div class="node-content bg-pink-50 border-l-4 border-pink-400" data-level="2">Sensory Focus (Vision, Movement)</div></li>
+                        <li><div class="node-content bg-pink-50 border-l-4 border-pink-400" data-level="2">Reflective Dialogue &amp; Deeper Questions</div></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nodesWithChildren = document.querySelectorAll('.node-content.has-children');
+
+            nodesWithChildren.forEach(node => {
+                // Initially collapse all children except the top level
+                const childrenList = node.nextElementSibling;
+                if (childrenList && childrenList.tagName === 'UL') {
+                    const level = parseInt(node.dataset.level, 10);
+                    if (level > 1) { // Collapse level 2 and deeper
+                         node.parentElement.classList.add('collapsed');
+                         childrenList.style.display = 'none';
+                         node.querySelector('.toggle-icon').textContent = '+';
+                    }
+                }
+
+                node.addEventListener('click', function (event) {
+                    const parentLi = this.parentElement;
+                    parentLi.classList.toggle('collapsed');
+                    
+                    const childrenList = this.nextElementSibling;
+                    const icon = this.querySelector('.toggle-icon');
+
+                    if (childrenList && childrenList.tagName === 'UL') {
+                        if (childrenList.style.display === 'none' || childrenList.style.display === '') {
+                            childrenList.style.display = 'block';
+                            icon.textContent = '−';
+                        } else {
+                            childrenList.style.display = 'none';
+                            icon.textContent = '+';
+                        }
+                    }
+                    event.stopPropagation();
+                });
+            });
+
+             // Initially collapse all nodes for a cleaner start
+            document.querySelectorAll('.mindmap > li > ul').forEach(ul => {
+                const parentNode = ul.previousElementSibling;
+                const parentLi = parentNode.parentElement;
+                
+                parentLi.classList.add('collapsed');
+                ul.style.display = 'none';
+                parentNode.querySelector('.toggle-icon').textContent = '+';
+
+            });
+             // except for the first one
+             const firstNode = document.querySelector('.mindmap > li');
+             if (firstNode) {
+                 const firstList = firstNode.querySelector('ul');
+                 const firstNodeContent = firstNode.querySelector('.node-content');
+                 if(firstList && firstNodeContent){
+                    firstNode.classList.remove('collapsed');
+                    firstList.style.display = 'block';
+                    firstNodeContent.querySelector('.toggle-icon').textContent = '−';
+                 }
+             }
+
+        });
+    </script>
+</body>
+</html>
