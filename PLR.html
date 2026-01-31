@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Life Regression Script</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Georgia', 'serif'],
+                    },
+                    colors: {
+                        'pause-light': '#e0f2fe',
+                        'pause-text-light': '#0369a1',
+                        'pause-dark': '#1e293b',
+                        'pause-text-dark': '#7dd3fc',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .pause-badge {
+            display: inline-block;
+            font-size: 0.85em;
+            font-weight: 600;
+            padding: 0 6px;
+            border-radius: 4px;
+            margin-left: 8px;
+            vertical-align: middle;
+            font-family: 'Inter', sans-serif;
+            opacity: 0.8;
+            user-select: none; /* Prevents selecting the pause time when copying text */
+        }
+
+        /* Reading Guide Line (Optional subtle underline for active reading, kept simple for now) */
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .script-section {
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+        .dark .script-section {
+            border-bottom-color: #334155;
+        }
+        .script-section:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 min-h-screen font-serif transition-colors duration-300">
+
+    <!-- Sticky Header for Controls -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-300">
+        <div class="max-w-3xl mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-sm font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">Session Script</h1>
+            
+            <div class="flex items-center gap-4">
+                <!-- Font Size Controls -->
+                <div class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
+                    <button onclick="adjustFontSize(-2)" class="p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded text-xs font-bold" aria-label="Decrease font size">A-</button>
+                    <button onclick="adjustFontSize(2)" class="p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded text-lg font-bold" aria-label="Increase font size">A+</button>
+                </div>
+
+                <!-- Theme Toggle -->
+                <button id="themeToggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Dark Mode">
+                    <!-- Sun Icon -->
+                    <svg id="sunIcon" class="w-6 h-6 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <!-- Moon Icon -->
+                    <svg id="moonIcon" class="w-6 h-6 block dark:hidden text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Script Content -->
+    <main id="scriptContainer" class="max-w-3xl mx-auto px-6 py-10 text-xl leading-relaxed">
+        
+        <h1 class="text-3xl md:text-4xl font-sans font-bold text-center mb-12 text-slate-900 dark:text-white">Past Life Regression Script</h1>
+
+        <!-- Part 1 -->
+        <section class="script-section">
+            <h2 class="text-sm font-sans font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-6 sticky top-20 bg-slate-50/95 dark:bg-slate-900/95 py-2 w-full">Part 1: Introduction and Induction</h2>
+            
+            <p>So everybody feel free to settle in. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Please make yourselves comfortable. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>I always say you know, the closer we make our situations to a bed, the more likely we are to go into sleep or take a nap during these experiences. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>So perhaps sitting in a chair with the back straight and supported comfortable. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Of course, your comfort being the most important thing. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Do feel free to go off camera if you would like to. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>However, you're most comfortable. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>This exercise today will be about 25 to 30 minutes. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>And I invite. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Again, a part of your subconscious mind. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Your deeper intelligence. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Just a part of your attention to stay with the words today. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Even as I ask you during the experience to focus on the non verbal experience which I'm going to do. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Is to keep focusing on the words to give all of ourselves permission. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>To have a little bit of the attention on the language today. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>(Because that's what we're here for.) <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Now, one last thought actually. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>As you're pleased making yourself comfortable. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>There was a person I was working with for years, an actress and a tremendous storyteller. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>And she and I would always kind of say something in terms of the language that all the words we use are in service of the States and the feelings that we're also working here too Access and have more of and cultivate and support so the gold Is beneath all the words that we could use to describe it. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>It's that nonverbal thing that we're getting to through the language. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>So again, just inviting a part of your attention to stay with the words there as we enjoy the nonverbal experience. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Letting your eyes close, making yourselves comfortable please. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>And with eyes closed, we'll begin with a deep cleansing breath. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(6s)</span></p>
+            <p>And taking another. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(6s)</span></p>
+            <p>And taking one more and this time exhaling twice as long, letting all the air out of the lungs. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(8s)</span></p>
+            <p>And just continuing by letting your breathing be easy and natural. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Letting your attention rest with your senses. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Noticing the sound and tone of my voice. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Any other sounds on the call? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Any other sounds around you? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Listening to everything as if hearing music play. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>As if listening to the different instruments of a song. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>And just imagining what it might feel like now, if a wave of relaxation were to move over your body. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Cascading down from the crown of the head, relaxing the muscles around your eyes. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Your nose. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>The cheeks and jaw. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>This relaxation like warm, soothing water washing down the shoulders, the arms, the hands. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>The spine to the core to the left side to the right side. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Moving passed the hips and down both legs all the way down to the bottoms of your feet. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Feeling your body connected and complete, balanced and symmetrical. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>From the area above your head to the space below your feet. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>As the next deep breath rises. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>And is exhaled twice as long. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(6s)</span></p>
+            <p>Noticing any thoughts in mind? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Any ideas or opinions? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Thoughts of earlier today or later today? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>The past or the future. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Commentary or self talk? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>And noticing as if for the first time. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>As if we were kids playing with our imaginations. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>But we can watch those thoughts. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>That we can observe them as if watching clouds drifting by in the sky, pushed along by the wind, passing as all things do. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Getting further. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>And further. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>And further away. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Becoming present once more just by reconnecting to the sense. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Of the surface beneath you. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>The nonverbal experience of the air on your skin. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>The listening hearing the sounds and tones around you. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>As if hearing the different instruments of a song. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>In a moment I'll countdown from Ten to One. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>And with each digit I would like you to just imagine what it might feel like if your body were to relax itself. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Easily and naturally this feeling already there present in the biochemistry and Physiology that you always have with you. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Just inviting it to the surface of your skin, inviting this relaxation to express itself. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Starting with TEN and noticing wherever the most relaxed parts of your body. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Already are. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>NINE.... <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>EIGHT.... <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Listening to the quiet between the sounds. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>SEVEN.... <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>SIX.... <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>As you're listening. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Noticing just how relaxed the big toe on your right foot is. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>FIVE.... <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>FOUR.... <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>As you notice sensations. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Noticing the furthest sound from you wherever that might be now. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>THREE.... <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>TWO.... <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Allowing your awareness to expand into the field of. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Air around you. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>In front of you and behind, above and. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Below, left and right. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>And ONE... <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>And just noticing how your body feels now. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Using your imagination. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>As if we were kids playing with our imaginations. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+        </section>
+
+        <!-- Part 2 -->
+        <section class="script-section">
+            <h2 class="text-sm font-sans font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-6 sticky top-20 bg-slate-50/95 dark:bg-slate-900/95 py-2 w-full">Part 2: Safe Place and Guide</h2>
+            
+            <p>I would like you to imagine for yourself... a beautiful, safe and sacred place in the privacy of your own mind. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(6s)</span></p>
+            <p>It may be a place you visited before, or a place that you invent in your imagination. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Please just making it as beautiful as it possibly can be. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Making this place the place that you would like to visit right now. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>It may have many spaces inside and outdoors. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Seeing it emerge around you. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Stepping into any images becoming part of them in motion, not still, but happening. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>And bringing your awareness there. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>First person please to experience that beauty the only. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Way we could. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Through the senses. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Touching the surfaces around you noticing. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Texture, smoothness, roughness, man-made natural. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Feeling the ground beneath your feet there, scrunching it between your toes. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Noticing the sounds, they're around you, listening to them as if hearing music play. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Any sent in the air, Any taste in the tongue. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Exploring that beautiful, safe and sacred place in the privacy of your own mind. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>For a few deep breaths please nothing to do that isn't already happening right there, enjoying it, and in a few breaths will continue. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark font-bold">(30s)</span></p>
+            <p>As you're exploring there, I would like you to invite to join you for the practice today, a guide. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>A guide that we may regard as a spirit guide. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>A representative for the subconscious mind or your intuition. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>How we regard them doesn't so much matter, just that you invite your guide to join you, please and welcome them as they arrive. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>It may be a trusted mentor. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Teacher, loved one, family member, ancestor...friend <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Maybe someone you're meeting for the first time today? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Maybe an animal. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Inviting your guide to be there with you please. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Enjoying each other's good company for a few moments. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>In the privacy of your own mind sharing in words, meditation, or conversation, anything that's in your heart or on your mind. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Anything that you might like to explore during the practice today. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Sharing it with your guide and letting that feeling rest next to your heart... acting as a compass... showing the way. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(6s)</span></p>
+            <p>A few more breaths here. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Then we'll continue. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark font-bold">(30s)</span></p>
+        </section>
+
+        <!-- Part 3 -->
+        <section class="script-section">
+            <h2 class="text-sm font-sans font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-6 sticky top-20 bg-slate-50/95 dark:bg-slate-900/95 py-2 w-full">Part 3: First Lifetime</h2>
+            
+            <p>As you're exploring there, I would like you to notice that nearby there is a large, beautiful door. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Allowing your attention to gravitate towards that door, noticing its size, its shape, its color and design. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Letting your imagination make any changes necessary to see the door there. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>In a moment I'll countdown from THREE to ONE and when I reach one, I'll ask you to step through the door and find yourself on the other side. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>In the first past lifetime memory we'll see today. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Feeling the ground beneath the feet there, the presence of your guide nearby the door there before you. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>THREE another deep breath. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>TWO that compass resting next to your heart. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>And ONE. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Stepping through the door, resting with your senses as you go. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Traveling all the way to the other side. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark font-bold">(20s)</span></p>
+            <p>In your mind feeling your body. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Noticing male or female. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Height or weight, masculine and feminine. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Clothing... Climate... Temperature... Skin... <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>In your mind, looking down at your feet, noticing what you're wearing on them, if anything. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>The ground beneath the connection to the environment. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark font-bold">(10s)</span></p>
+            <p>Any images in mind stepping into them becoming part of them? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>In motion and happening not still, but unfolding. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Listening to any sounds there. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Any sent in the air, Any taste in the tongue. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Noticing if there are any feelings or emotions present and listening to them for their story. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Noticing anything that you see or feel as connected to your present lifetime. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>If there are people or animals around you. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Looking into their eyes and noticing if you recognize them from your present lifetime. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Allowing any awareness to just be there. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark font-bold">(20s)</span></p>
+            <p>In a moment, I'll begin to offer a few prompts and ask a few questions. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Allowing your higher mind your guide to respond. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Any information, awareness or responses there are for you? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Continuing to rest with your senses in the non verbal experience. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>What is the lesson here? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(8s)</span></p>
+            <p>What am I meant to see? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(8s)</span></p>
+            <p>What am I revealing to myself now? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark font-bold">(10s)</span></p>
+            <p>Is there something here that I can let go of, forgive or complete? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>If So what is it and how? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(8s)</span></p>
+            <p>Is there something here that I can catalyze? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Begin again or reincarnate? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>If So what is it and how? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(8s)</span></p>
+            <p>What is the lesson here? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(8s)</span></p>
+            <p>Exploring here for a few more deep breaths. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Trusting yourself, please trusting your guide. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>As I do. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>And in a few moments, we'll continue. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark font-bold">(30s)</span></p>
+            <p>And with the next deep breath. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Gently allowing your mind to clear. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Any scenes to dissolve? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>And bringing your awareness to gently resetting in that beautiful, safe and sacred place once more. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(6s)</span></p>
+        </section>
+
+        <!-- Part 4 -->
+        <section class="script-section">
+            <h2 class="text-sm font-sans font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-6 sticky top-20 bg-slate-50/95 dark:bg-slate-900/95 py-2 w-full">Part 4: Second Lifetime</h2>
+            
+            <p>Seeing that beautiful door there before you, the presence of your guide nearby. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>The ground beneath your feet. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Noticing something there that's beautiful to you that you hadn't seen before. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>And in a moment I'll countdown from THREE to ONE and when I reach one, I'll ask you to step through and find yourself on the other side and the next past lifetime memory we'll see today. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(6s)</span></p>
+            <p>THREE feeling another deep breath. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>TWO <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>And ONE. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Stepping through the door. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Resting in the non verbal experience, traveling all the way to the other side. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Any images in mind stepping into them? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Becoming part of them in motion, not still, but happening. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>In your mind feeling your body. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Noticing male or female. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Masculine and feminine. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Height or weight? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Clothing or climb? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Time of day. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Air quality. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Skin. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark font-bold">(10s)</span></p>
+            <p>In your mind, looking down at your feet, noticing what you're wearing on them, if anything. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>The connection to the environment. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark font-bold">(15s)</span></p>
+            <p>Noticing inside or outdoors hardness or softness, coolness or warmth. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Light or shadow? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Any emotions present listening to them for their story. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Anything that you see or feel is connected to your present lifetime. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Knowing that you may bring your awareness above a scene at any time. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Take in the story the narrative. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>From a bird's eye view, a safe distance, giving yourself whatever you need. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>If you need it. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark font-bold">(10s)</span></p>
+            <p>In a moment, I'll begin to ask a few questions and offer prompts again. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Letting your higher mind your guide respond. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Trusting them as I do, please. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Resting with the senses. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>What is the lesson here? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(8s)</span></p>
+            <p>What am I reflecting for myself now? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(8s)</span></p>
+            <p>Is there something here that can be dissolved, released? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Forgiven... completed. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>If so. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Beginning that process today. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(6s)</span></p>
+            <p>Is there something here that can be begun again? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Remembered... reincarnated. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>If so, taking it with you today. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(6s)</span></p>
+            <p>What is the lesson here? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(8s)</span></p>
+            <p>Taking with you please what feels useful and feeling free to leave the rest. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>And in a few deep breaths, we'll continue. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark font-bold">(30s)</span></p>
+            <p>And with the next deep breath. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>(Pause for 10 Seconds) <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark font-bold">(10s)</span></p>
+            <p>Gently bringing your awareness back out to that beautiful, safe and sacred place. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Once more, gently resetting there. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+        </section>
+
+        <!-- Part 5 -->
+        <section class="script-section">
+            <h2 class="text-sm font-sans font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-6 sticky top-20 bg-slate-50/95 dark:bg-slate-900/95 py-2 w-full">Part 5: Third Lifetime and Closing</h2>
+            
+            <p>Seeing the door there before you the presence of your guide nearby noticing yet something else that is beautiful to you in this space that you hadn't noticed before. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(6s)</span></p>
+            <p>Having stepped through the door twice before now. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>At your own pace, whenever you're ready, I'd like you to feel free to step through the door into the next and last past lifetime. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(6s)</span></p>
+            <p>We'll see during this experience today. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Guiding yourself along the way, resting in the non verbal experience, traveling all the way to the other side. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Stepping into any images. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Not still, but unfolding than happening in motion. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Feeling your body. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Noticing texture clothing. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Height weight male female. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Age, time place. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Looking down at your feet, noticing what you're wearing on them, if anything. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Feeling the connection to the environment, the air. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Any sent. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Any smells in the air. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Any taste? <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(2s)</span></p>
+            <p>Listening to any emotions present for their story. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Noticing anything that you see or feel is connected to your present lifetime. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Taking with you, it feels useful, and leaving the rest please. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Trusting yourself, your guide, your intuition as I do. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>And in a few moments, we'll continue. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark font-bold">(60s)</span></p>
+            <p>Then with the next deep breath. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Allowing any scenes in mind to dissolve. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Reconnecting with your guide. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>One more time. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>Knowing that you are taking this connection with you today and that you may revisit. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>Their company this conversation with them in the privacy of your own meditations or daydreams. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(5s)</span></p>
+            <p>Whenever you would like it is yours. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>And with that gently bringing the awareness back to the nonverbal experience of the surface beneath you, the air in the room around you, the sound and tone of my voice and all the other sounds there, listening to everything, as if hearing music play. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(8s)</span></p>
+            <p>A wave of energy mingling with the vitality in the body. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>And in a moment I'll count up from ONE to FIVE, and when I reach 5, I'll ask you to open your eyes and you'll be awake, alert and ready for the rest of your day. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(6s)</span></p>
+            <p>ONE another deep breath. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(4s)</span></p>
+            <p>TWO... <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>THREE... <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>FOUR... <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark">(3s)</span></p>
+            <p>And FIVE opening your eyes whenever you're ready. <span class="pause-badge bg-pause-light text-pause-text-light dark:bg-pause-dark dark:text-pause-text-dark font-bold">(End)</span></p>
+        </section>
+
+    </main>
+
+    <script>
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        // Check local storage or system preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            if (htmlElement.classList.contains('dark')) {
+                localStorage.theme = 'dark';
+            } else {
+                localStorage.theme = 'light';
+            }
+        });
+
+        // Font Size Logic
+        const container = document.getElementById('scriptContainer');
+        const fontSizes = ['text-lg', 'text-xl', 'text-2xl', 'text-3xl', 'text-4xl'];
+        let currentSizeIndex = 1; // Default to text-xl
+
+        function adjustFontSize(direction) {
+            // Remove current size class
+            container.classList.remove(fontSizes[currentSizeIndex]);
+            
+            // Calculate new index
+            if (direction > 0 && currentSizeIndex < fontSizes.length - 1) {
+                currentSizeIndex++;
+            } else if (direction < 0 && currentSizeIndex > 0) {
+                currentSizeIndex--;
+            }
+
+            // Add new size class
+            container.classList.add(fontSizes[currentSizeIndex]);
+        }
+    </script>
+</body>
+</html>
