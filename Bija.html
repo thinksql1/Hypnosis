@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resonance | Interactive Chakra Guide</title>
+    <style>
+        /* * DESIGN TOKENS 
+         */
+        :root {
+            --bg-dark: #050a10;
+            --text-main: #f2f2f2;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --active-color: #ffffff;
+            
+            --font-serif: 'Playfair Display', 'Georgia', serif;
+            --font-sans: 'Inter', system-ui, sans-serif;
+            --font-mono: 'Space Mono', 'Courier New', monospace;
+
+            --inhale-time: 6s;
+            --tone-time: 18s;
+            
+            /* Ring Colors */
+            --ring-white: rgba(255, 255, 255, 0.95);
+            --ring-black: #000000;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            font-family: var(--font-sans);
+            color: var(--text-main);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* UTILITIES */
+        .hidden { display: none !important; }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* LAYOUT */
+        .app-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem 2rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* HEADER */
+        .info-panel { text-align: center; width: 100%; transition: opacity 0.5s ease; }
+        h1 { font-family: var(--font-serif); font-size: 2.5rem; margin: 0; }
+        .sanskrit-name { font-family: var(--font-serif); font-style: italic; color: var(--text-muted); font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .metadata-grid { display: flex; justify-content: center; gap: 1rem; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
+        .metadata-item { border: 1px solid var(--glass-border); padding: 0.2rem 0.6rem; border-radius: 99px; color: var(--active-color); }
+
+        /* VISUALIZATION CENTER */
+        .viz-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+        }
+
+        /* Main Breathing Circle */
+        .breathing-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), transparent 60%), var(--active-color);
+            
+            /* Default Shadow (Glow) */
+            box-shadow: 0 0 40px var(--active-color);
+            
+            /* Default Border (Invisible) */
+            border: 0px solid transparent;
+            
+            opacity: 0.8;
+            z-index: 10;
+            will-change: transform, box-shadow, border-width, border-color;
+            
+            /* Smooth transitions for Ring changes */
+            transition: border-color 0.3s ease, border-width 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* RING STATES (Applied to .breathing-circle) */
+        
+        /* White Ring: Thick white border */
+        .breathing-circle.ring-white {
+            border: 8px solid var(--ring-white);
+            box-shadow: 0 0 50px var(--active-color), inset 0 0 20px rgba(255,255,255,0.5);
+        }
+
+        /* Black Ring: Black border + Sharper white outline */
+        .breathing-circle.ring-black {
+            border: 8px solid var(--ring-black);
+            /* The 2px solid white shadow creates the outline */
+            box-shadow: 
+                0 0 0 2px rgba(255,255,255,0.9), 
+                0 0 40px var(--active-color);
+        }
+
+        /* MANTRA TEXT */
+        .mantra-text {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--font-serif);
+            font-size: 5rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.95);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            pointer-events: none;
+            z-index: 30;
+            mix-blend-mode: overlay;
+        }
+
+        /* ANIMATIONS */
+        /* INHALE: Expand */
+        .viz-container.state-inhale .breathing-circle {
+            animation: expand var(--inhale-time) cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+        }
+        /* TONE: Contract */
+        .viz-container.state-tone .breathing-circle {
+            animation: contract var(--tone-time) linear forwards;
+        }
+        /* SILENCE: Pulse small */
+        .viz-container.state-silence .breathing-circle {
+            transform: scale(0.2);
+            opacity: 0.2;
+            animation: pulse-silence 3s infinite ease-in-out;
+            filter: grayscale(100%);
+        }
+
+        @keyframes expand {
+            from { transform: scale(0.5); opacity: 0.6; }
+            to { transform: scale(1.6); opacity: 1; }
+        }
+
+        @keyframes contract {
+            from { transform: scale(1.6); opacity: 1; }
+            to { transform: scale(0.5); opacity: 0.6; }
+        }
+
+        @keyframes pulse-silence {
+            0%, 100% { transform: scale(0.2); opacity: 0.1; }
+            50% { transform: scale(0.25); opacity: 0.2; }
+        }
+
+        /* CONTROLS */
+        .control-panel { width: 100%; display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+        
+        .dashboard-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            align-items: center;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .dash-item { display: flex; flex-direction: column; gap: 0.25rem; }
+        .dash-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+        .dash-value { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--text-main); }
+        .timer-val { color: var(--active-color); }
+
+        .button-group { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+        
+        button {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            border-radius: 8px;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            display: flex; align-items: center; gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        button:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+        button:disabled { opacity: 0.3; cursor: not-allowed; }
+        button.primary { background: var(--active-color); color: #000; border-color: var(--active-color); font-weight: 600; }
+        button.primary:hover { box-shadow: 0 0 15px var(--active-color); opacity: 0.9; }
+
+        .icon { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .breathing-circle { width: 160px; height: 160px; }
+            .dashboard-row { grid-template-columns: 1fr; gap: 1rem; }
+            .mantra-text { font-size: 3.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <header class="info-panel fade-in">
+            <h1 id="chakra-name">Root Chakra</h1>
+            <div id="chakra-sanskrit" class="sanskrit-name">Muladhara</div>
+            <div class="metadata-grid">
+                <span class="metadata-item" id="chakra-location">Base of Spine</span>
+                <span class="metadata-item" id="chakra-meaning">Grounding</span>
+            </div>
+        </header>
+
+        <div class="viz-container" id="viz-container">
+            <div class="breathing-circle" id="breathing-circle"></div>
+            <div class="mantra-text" id="chakra-mantra">LAM</div>
+        </div>
+
+        <footer class="control-panel fade-in">
+            <div class="dashboard-row">
+                <div class="dash-item">
+                    <span class="dash-label">Status</span>
+                    <span class="dash-value" id="status-text">Ready</span>
+                </div>
+                <div class="dash-item">
+                    <span class="dash-label">Breath Timer</span>
+                    <span class="dash-value timer-val" id="breath-timer">00</span>
+                </div>
+                <div class="dash-item">
+                    <span class="dash-label">Cycle Count</span>
+                    <span class="dash-value" id="cycle-counter">-- / --</span>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button id="btn-prev">
+                    <svg class="icon" viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
+                    Prev
+                </button>
+                <button id="btn-start" class="primary">
+                    <svg class="icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    Start
+                </button>
+                <button id="btn-pause" disabled>
+                    <svg class="icon" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                    Pause
+                </button>
+                <button id="btn-next">
+                    Next
+                    <svg class="icon" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+                </button>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        /**
+         * CONFIGURATION
+         */
+        const config = {
+            inhaleDuration: 6,         // Seconds
+            toneDuration: 18,          // Seconds
+            silenceBetweenChakras: 30, // Seconds
+            introRepeats: 4,           // First part count for lower chakras
+            lowerChakraMins: 3, 
+            upperChakraMins: 5
+        };
+
+        const chakras = [
+            { name: "Root", sanskrit: "Muladhara", location: "Base of Spine", mantra: "LAM", meaning: "I Am", color: "#e63946", type: "lower", pattern: "standard" },
+            { name: "Sacral", sanskrit: "Svadhisthana", location: "Pelvis", mantra: "VAM", meaning: "I Feel", color: "#f48c06", type: "lower", pattern: "standard" },
+            { name: "Solar Plexus", sanskrit: "Manipura", location: "Navel", mantra: "RAM", meaning: "I Do", color: "#ffba08", type: "lower", pattern: "standard" },
+            { name: "Heart", sanskrit: "Anahata", location: "Center Chest", mantra: "YAM", meaning: "I Love", color: "#2a9d8f", type: "upper", pattern: "standard" },
+            { name: "Throat", sanskrit: "Vishuddha", location: "Throat", mantra: "HAM", meaning: "I Speak", color: "#0096c7", type: "upper", pattern: "standard" },
+            { name: "Third Eye", sanskrit: "Ajna", location: "Brow Center", mantra: "OM", meaning: "I See", color: "#4361ee", type: "upper", pattern: "om" },
+            { name: "Crown", sanskrit: "Sahasrara", location: "Top of Head", mantra: "OM", meaning: "I Know", color: "#7209b7", type: "upper", pattern: "om" }
+        ];
+
+        /* Cycle Calculation */
+        const cycleSeconds = config.inhaleDuration + config.toneDuration;
+        const lowerCycles = Math.round((config.lowerChakraMins * 60) / cycleSeconds); // ~8 for 3 mins
+        const upperCycles = Math.round((config.upperChakraMins * 60) / cycleSeconds); // ~13 for 5 mins
+
+        /**
+         * STATE
+         */
+        const state = {
+            active: false,
+            paused: false,
+            currentChakraIndex: 0,
+            stage: 'idle', // 'idle', 'intro', 'immersion', 'silence'
+            cycle: 'inhale', // 'inhale', 'tone'
+            cycleCount: 0,
+            totalCycles: 0,
+            startTime: 0,
+            accumulatedTime: 0,
+            animationFrameId: null
+        };
+
+        // Elements
+        const el = {
+            name: document.getElementById('chakra-name'),
+            sanskrit: document.getElementById('chakra-sanskrit'),
+            location: document.getElementById('chakra-location'),
+            meaning: document.getElementById('chakra-meaning'),
+            mantra: document.getElementById('chakra-mantra'),
+            viz: document.getElementById('viz-container'),
+            circle: document.getElementById('breathing-circle'),
+            root: document.documentElement,
+            timer: document.getElementById('breath-timer'),
+            status: document.getElementById('status-text'),
+            counter: document.getElementById('cycle-counter'),
+            btnStart: document.getElementById('btn-start'),
+            btnPause: document.getElementById('btn-pause'),
+            btnNext: document.getElementById('btn-next'),
+            btnPrev: document.getElementById('btn-prev')
+        };
+
+        function init() {
+            el.root.style.setProperty('--inhale-time', `${config.inhaleDuration}s`);
+            el.root.style.setProperty('--tone-time', `${config.toneDuration}s`);
+            
+            el.btnStart.addEventListener('click', toggleStart);
+            el.btnPause.addEventListener('click', togglePause);
+            el.btnNext.addEventListener('click', () => navigate(1));
+            el.btnPrev.addEventListener('click', () => navigate(-1));
+            
+            updateUI(0);
+        }
+
+        function updateUI(index) {
+            if(index < 0) index = 0;
+            if(index >= chakras.length) index = chakras.length - 1;
+            
+            const c = chakras[index];
+            el.name.textContent = c.name;
+            el.sanskrit.textContent = c.sanskrit;
+            el.location.textContent = c.location;
+            el.meaning.textContent = c.meaning;
+            el.mantra.textContent = c.mantra;
+            el.root.style.setProperty('--active-color', c.color);
+            
+            if(state.stage === 'idle') {
+                el.status.textContent = "Ready";
+                el.timer.textContent = "00";
+                let total = c.type === 'lower' ? config.introRepeats : upperCycles;
+                el.counter.textContent = `1 / ${total}`;
+            }
+        }
+
+        function toggleStart() {
+            if (!state.active) {
+                state.active = true;
+                state.paused = false;
+                el.btnStart.innerHTML = `<svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg> Stop`;
+                el.btnStart.classList.remove('primary');
+                el.btnPause.disabled = false;
+                startChakraSequence();
+            } else {
+                reset();
+            }
+        }
+
+        function togglePause() {
+            if (!state.active) return;
+            if (state.paused) {
+                state.paused = false;
+                state.startTime = performance.now() - state.accumulatedTime;
+                el.btnPause.innerHTML = `<svg class="icon" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg> Pause`;
+                el.viz.querySelector('.breathing-circle').style.animationPlayState = 'running';
+                loop();
+            } else {
+                state.paused = true;
+                state.accumulatedTime = performance.now() - state.startTime;
+                cancelAnimationFrame(state.animationFrameId);
+                el.btnPause.innerHTML = `<svg class="icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg> Resume`;
+                el.viz.querySelector('.breathing-circle').style.animationPlayState = 'paused';
+            }
+        }
+
+        function navigate(dir) {
+            let newIndex = state.currentChakraIndex + dir;
+            if (newIndex < 0) return;
+            if (newIndex >= chakras.length) return;
+            
+            state.currentChakraIndex = newIndex;
+            
+            // STOP EVERYTHING AND RESET TO IDLE
+            reset();
+        }
+
+        function reset() {
+            state.active = false;
+            state.paused = false;
+            state.stage = 'idle';
+            cancelAnimationFrame(state.animationFrameId);
+            
+            el.btnStart.innerHTML = `<svg class="icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg> Start`;
+            el.btnStart.classList.add('primary');
+            el.btnPause.disabled = true;
+            el.btnPause.innerHTML = `<svg class="icon" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg> Pause`;
+            
+            setVisualState('idle');
+            updateUI(state.currentChakraIndex);
+        }
+
+        function startChakraSequence() {
+            const currentChakra = chakras[state.currentChakraIndex];
+            updateUI(state.currentChakraIndex);
+
+            if (currentChakra.type === 'lower') {
+                state.stage = 'intro';
+                state.totalCycles = config.introRepeats;
+            } else {
+                state.stage = 'immersion';
+                state.totalCycles = upperCycles;
+            }
+            state.cycleCount = 1; 
+            startBreathCycle('inhale');
+        }
+
+        function nextPhase() {
+            const currentChakra = chakras[state.currentChakraIndex];
+            if (state.stage === 'intro' && currentChakra.type === 'lower') {
+                state.stage = 'immersion';
+                state.cycleCount = 1;
+                state.totalCycles = lowerCycles; 
+                startBreathCycle('inhale');
+            } else {
+                startSilence();
+            }
+        }
+
+        function startSilence() {
+            state.stage = 'silence';
+            state.startTime = performance.now();
+            state.cycle = 'silence';
+            setVisualState('silence');
+            el.status.textContent = "Silence / Integration";
+            el.counter.textContent = "--";
+            loop();
+        }
+
+        function endSilence() {
+            state.currentChakraIndex++;
+            if (state.currentChakraIndex >= chakras.length) {
+                reset();
+                el.status.textContent = "Session Complete";
+                el.name.textContent = "Namaste";
+                return;
+            }
+            startChakraSequence();
+        }
+
+        function startBreathCycle(type) {
+            state.cycle = type;
+            state.startTime = performance.now();
+            
+            if (type === 'inhale') {
+                setVisualState('inhale');
+                el.status.textContent = (state.stage === 'intro') ? "Intro: Inhale" : "Flow: Inhale";
+                el.counter.textContent = `${state.cycleCount} / ${state.totalCycles}`;
+            } else {
+                setVisualState('tone');
+                el.status.textContent = "Tone";
+            }
+            loop();
+        }
+
+        function setVisualState(mode) {
+            el.viz.classList.remove('state-inhale', 'state-tone', 'state-silence');
+            el.circle.classList.remove('ring-white', 'ring-black'); // clear ring states
+
+            if (mode === 'inhale') {
+                el.viz.classList.add('state-inhale');
+                el.mantra.style.opacity = '0.3';
+            } else if (mode === 'tone') {
+                el.viz.classList.add('state-tone');
+                el.mantra.style.opacity = '1';
+            } else if (mode === 'silence') {
+                el.viz.classList.add('state-silence');
+                el.mantra.style.opacity = '0';
+            } else {
+                el.mantra.style.opacity = '0.5';
+            }
+        }
+
+        function loop() {
+            if (!state.active || state.paused) return;
+
+            const now = performance.now();
+            const elapsed = (now - state.startTime) / 1000;
+
+            if (state.stage === 'silence') {
+                const remaining = Math.ceil(config.silenceBetweenChakras - elapsed);
+                el.timer.textContent = remaining > 0 ? remaining : 0;
+                if (elapsed >= config.silenceBetweenChakras) {
+                    endSilence();
+                    return;
+                }
+                state.animationFrameId = requestAnimationFrame(loop);
+                return;
+            }
+
+            if (state.cycle === 'inhale') {
+                const remaining = Math.ceil(config.inhaleDuration - elapsed);
+                el.timer.textContent = remaining > 0 ? remaining : 0;
+                if (elapsed >= config.inhaleDuration) {
+                    startBreathCycle('tone');
+                    return;
+                }
+            } else if (state.cycle === 'tone') {
+                const remaining = Math.ceil(config.toneDuration - elapsed);
+                el.timer.textContent = remaining > 0 ? remaining : 0;
+
+                updateRing(elapsed);
+
+                if (elapsed >= config.toneDuration) {
+                    if (state.cycleCount >= state.totalCycles) {
+                        nextPhase();
+                    } else {
+                        state.cycleCount++;
+                        startBreathCycle('inhale');
+                    }
+                    return;
+                }
+            }
+
+            state.animationFrameId = requestAnimationFrame(loop);
+        }
+
+        function updateRing(elapsed) {
+            const currentChakra = chakras[state.currentChakraIndex];
+            
+            // Clear current classes
+            el.circle.classList.remove('ring-white', 'ring-black');
+
+            // 1. INTRO PHASE FOR LOWER CHAKRAS (Special 9s / 9s split)
+            if (currentChakra.type === 'lower' && state.stage === 'intro') {
+                if (elapsed < 9) {
+                    el.circle.classList.add('ring-white');
+                } else {
+                    el.circle.classList.add('ring-black');
+                }
+                return;
+            }
+
+            // 2. OM PATTERN (Third Eye & Crown) - 6s / 6s / 6s
+            if (currentChakra.pattern === 'om') {
+                if (elapsed < 6) {
+                    el.circle.classList.add('ring-white');
+                } else if (elapsed > 12) {
+                    el.circle.classList.add('ring-black');
+                }
+                return;
+            }
+
+            // 3. STANDARD CONTINUOUS PATTERN (L-A-M style) - 4s / 10s / 4s
+            if (elapsed < 4) {
+                el.circle.classList.add('ring-white');
+            } else if (elapsed > 14) {
+                el.circle.classList.add('ring-black');
+            }
+        }
+
+        init();
+
+    </script>
+</body>
+</html>
