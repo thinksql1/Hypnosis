@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Darrell Wright | Bio</title>
+
+    <!-- Fonts: High-Low Pairing (Playfair + Inter + Space Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Tailwind CSS (for layout utility only, custom styles handle the aesthetic) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* * PHASE 1: DESIGN TOKENS (The "Aether" System)
+       */
+      :root {
+        /* Palette: Obsidian Base */
+        --bg-dark: #0f1b27;
+        --text-main: #f2f2f2;
+        --text-muted: #94a3b8;
+        
+        /* Accents: Sonic Spectrum */
+        --accent-cyan: #0abdc6;       /* Clarity */
+        --accent-violet: #9d4edd;     /* Spirit */
+        --accent-gold: #e0aa3e;       /* Warmth */
+        --accent-rose: #e63946;       /* Root/Vitality */
+
+        /* Glassmorphism Variables */
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+        --glass-blur: 16px;
+
+        /* Spacing & Type */
+        --font-serif: 'Playfair Display', serif;
+        --font-sans: 'Inter', sans-serif;
+        --font-mono: 'Space Mono', monospace;
+      }
+
+      body {
+        background-color: var(--bg-dark);
+        background-image: 
+          radial-gradient(circle at 10% 20%, rgba(10, 189, 198, 0.08), transparent 30%),
+          radial-gradient(circle at 90% 80%, rgba(157, 78, 221, 0.08), transparent 30%);
+        background-attachment: fixed;
+        font-family: var(--font-sans);
+        color: var(--text-main);
+        margin: 0;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Typography */
+      h1, h2, h3, h4 {
+        font-family: var(--font-serif);
+        font-weight: 400;
+        margin: 0;
+      }
+
+      h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 0.5rem; }
+      h2 { font-size: 2rem; color: var(--text-main); margin-bottom: 1rem; }
+      h3 { font-size: 1.25rem; color: var(--accent-gold); margin-bottom: 0.5rem; }
+      
+      p, li {
+        color: var(--text-muted);
+        font-size: 1rem;
+      }
+
+      /* Mono Tags */
+      .tag {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent-cyan);
+        display: inline-block;
+        margin-bottom: 0.5rem;
+      }
+
+      .tag-bordered {
+        border: 1px solid var(--glass-border);
+        padding: 0.25rem 0.75rem;
+        border-radius: 99px;
+        background: rgba(10, 189, 198, 0.05);
+      }
+
+      /* Glass Panel Component */
+      .glass-panel {
+        background: var(--glass-bg);
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--glass-shadow);
+        border-radius: 16px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+      }
+
+      .glass-panel:hover {
+        border-color: rgba(255,255,255,0.15);
+      }
+
+      /* Noise Texture Overlay */
+      .glass-panel::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+        opacity: 0.4;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .glass-panel > * { position: relative; z-index: 1; } 
+
+      /* Specific Layout Helpers */
+      .avatar-frame {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        border: 2px solid var(--accent-gold);
+        padding: 6px;
+        margin: 0 auto;
+        position: relative;
+      }
+      
+      .avatar-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        filter: sepia(20%) contrast(110%);
+      }
+
+      .section-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+        margin: 3rem 0;
+        width: 100%;
+      }
+
+      .skill-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .certification-list {
+        list-style: none;
+        padding: 0;
+      }
+      .certification-list li {
+        margin-bottom: 0.75rem;
+        padding-left: 1.5rem;
+        position: relative;
+      }
+      .certification-list li::before {
+        content: "❖"; 
+        color: var(--accent-violet);
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.8em;
+      }
+
+      /* Responsive padding */
+      .container-custom {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="container-custom">
+      
+      <!-- HERO SECTION -->
+      <header class="text-center mb-16 pt-8 fade-in-up">
+        <div class="avatar-frame mb-6">
+          <img src="unnamed%20(8).jpg" alt="Darrell Wright" onerror="this.src='https://ui-avatars.com/api/?name=Darrell+Wright&background=0f1b27&color=e0aa3e&size=256&font-size=0.33'">
+        </div>
+        
+        <span class="tag tag-bordered">Convocation 2026</span>
+        <h1 class="mt-4">Darrell Wright</h1>
+        <p class="font-serif text-xl italic text-gray-400 mb-6">Certified Hypnotherapist & Sound Journey Facilitator</p>
+        
+        <div class="flex justify-center gap-4 text-sm font-mono text-cyan-500 opacity-80">
+          <span class="flex items-center gap-2"><i data-feather="mic" class="w-4 h-4"></i> Speaker</span>
+          <span class="flex items-center gap-2"><i data-feather="wind" class="w-4 h-4"></i> Incense</span>
+          <span class="flex items-center gap-2"><i data-feather="moon" class="w-4 h-4"></i> Healer</span>
+        </div>
+      </header>
+
+      <!-- INTRO BLURB (Synthesizing the diverse background) -->
+      <section class="glass-panel p-8 mb-12 text-center max-w-2xl mx-auto">
+        <p class="text-lg leading-relaxed">
+          Bridging the worlds of <strong>Sacred Technology</strong> and modern pragmatism. With a foundation in the arts and 25 years in supply chain logistics, I craft experiences that align vibration, breath, and the subconscious mind. From the ancient Japanese art of Kodo to Ericksonian Hypnosis, my work is dedicated to embodied regulation and narrative transformation.
+        </p>
+      </section>
+
+      <!-- CORE PILLARS GRID -->
+      <section class="mb-12">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl">Core Disciplines</h2>
+          <div class="h-px bg-white/10 flex-grow ml-6"></div>
+        </div>
+
+        <div class="skill-grid">
+          
+          <!-- Hypnosis & NLP -->
+          <article class="glass-panel p-6 border-t-4 border-t-[var(--accent-violet)]">
+            <div class="flex justify-between items-start mb-4">
+              <i data-feather="cpu" class="text-[var(--accent-violet)]"></i>
+              <span class="tag">Mind</span>
+            </div>
+            <h3>Hypnosis & NLP</h3>
+            <ul class="certification-list text-sm">
+              <li><strong>Certified Hypnotherapist:</strong> American Alliance of Hypnotists</li>
+              <li><strong>Professional Diploma:</strong> Jacquin Hypnosis Academy (UK)</li>
+              <li><strong>Ericksonian Hypnotist:</strong> Certified Specialization</li>
+              <li><strong>Past Life Regression:</strong> Certified Hypnotist</li>
+              <li><strong>NLP Practitioner:</strong> American Union of NLP</li>
+            </ul>
+            <div class="mt-4 pt-4 border-t border-white/5">
+              <p class="text-xs font-mono text-gray-500">Studied with: James Tripp, Mike Mandel, Melissa Tiers, Aaron Alexander</p>
+            </div>
+          </article>
+
+          <!-- Somatic & Energy -->
+          <article class="glass-panel p-6 border-t-4 border-t-[var(--accent-rose)]">
+            <div class="flex justify-between items-start mb-4">
+              <i data-feather="activity" class="text-[var(--accent-rose)]"></i>
+              <span class="tag">Energy</span>
+            </div>
+            <h3>Somatic & Energy</h3>
+            <ul class="certification-list text-sm">
+              <li><strong>Reiki Level 1/2/3:</strong> Practitioner since 2000</li>
+              <li><strong>Sound Journey Facilitator:</strong> Vibration & Resonance</li>
+              <li><strong>Myoka Ryu:</strong> Senior Student of Kodo (The Way of Incense)</li>
+              <li><strong>Director of Proxy Program:</strong> "The Incense Journey" under John Launius</li>
+            </ul>
+          </article>
+
+          <!-- Divination & Strategy -->
+          <article class="glass-panel p-6 border-t-4 border-t-[var(--accent-gold)]">
+            <div class="flex justify-between items-start mb-4">
+              <i data-feather="eye" class="text-[var(--accent-gold)]"></i>
+              <span class="tag">Insight</span>
+            </div>
+            <h3>Insight & Strategy</h3>
+            <ul class="certification-list text-sm">
+              <li><strong>Tarot Training:</strong> Mentored by Scott Grossberg (Magic Castle/Magic Circle)</li>
+              <li><strong>Supply Chain Tech:</strong> 25 Years Corporate Strategy</li>
+              <li><strong>BFA Music Theatre:</strong> The Hartt School (Univ. of Hartford)</li>
+            </ul>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- HIGHLIGHT: PRESENTATIONS -->
+      <section class="glass-panel p-8 mb-12 flex flex-col md:flex-row items-center gap-8 border-l-4 border-l-[var(--accent-cyan)]">
+        <div class="md:w-1/3 text-center md:text-left">
+          <span class="tag">Speaker Profile</span>
+          <h2 class="mb-2">Conference Presenter</h2>
+          <p class="text-sm">Sharing tools for transformation.</p>
+        </div>
+        <div class="md:w-2/3 border-t md:border-t-0 md:border-l border-white/10 pt-6 md:pt-0 md:pl-8">
+          
+          <!-- Michigan Hypnosis Conference -->
+          <div class="flex items-center gap-4 mb-6">
+            <div class="bg-[var(--accent-cyan)]/10 p-3 rounded-full">
+              <i data-feather="mic" class="text-[var(--accent-cyan)]"></i>
+            </div>
+            <div>
+              <h3 class="mb-0 text-white">Michigan Hypnosis Conference</h3>
+              <p class="font-mono text-sm text-[var(--accent-cyan)]">2023 • 2024 • 2025</p>
+            </div>
+          </div>
+
+          <!-- Elevate -->
+          <div class="flex items-center gap-4 mb-6">
+            <div class="bg-[var(--accent-cyan)]/10 p-3 rounded-full">
+              <i data-feather="mic" class="text-[var(--accent-cyan)]"></i>
+            </div>
+            <div>
+              <h3 class="mb-0 text-white">Elevate</h3>
+              <p class="font-mono text-sm text-[var(--accent-cyan)]">2015–2020 • 2022–2024</p>
+            </div>
+          </div>
+
+          <p class="text-sm italic opacity-80 mt-2">
+            "We are practicing resonance, not arguing metaphysics."
+          </p>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="text-center pt-8 border-t border-white/5 opacity-80 pb-12">
+        <p class="font-serif italic text-lg mb-6">Darrell Wright</p>
+        
+        <!-- Contact Info -->
+        <div class="flex flex-col md:flex-row justify-center items-center gap-6 text-sm font-mono text-[var(--accent-cyan)]">
+          <a href="tel:8108778308" class="flex items-center gap-2 hover:text-[var(--accent-gold)] transition-colors duration-300">
+            <i data-feather="phone" class="w-4 h-4"></i>
+            810.877.8308
+          </a>
+          
+          <span class="hidden md:inline text-white/20">|</span>
+          
+          <a href="mailto:think.sql@gmail.com" class="flex items-center gap-2 hover:text-[var(--accent-gold)] transition-colors duration-300">
+            <i data-feather="mail" class="w-4 h-4"></i>
+            think.sql@gmail.com
+          </a>
+        </div>
+      </footer>
+
+    </div>
+
+    <script>
+      // Initialize Feather Icons
+      feather.replace();
+    </script>
+  </body>
+</html>
